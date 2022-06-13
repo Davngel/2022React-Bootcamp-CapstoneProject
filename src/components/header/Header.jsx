@@ -1,5 +1,7 @@
 import React from "react";
-import carrito from "../../utils/img/carrito.png";
+import { ReactComponent as CarritoCompra } from "../../utils/img/shopping-cart_icon-icons.com_65051.svg";
+import { ReactComponent as LogoT } from "../../utils/img/letters_T.svg";
+import { ReactComponent as LogoM } from "../../utils/img/letters_M.svg";
 import Buscar from "../buscar/Buscar";
 import styled from "styled-components";
 
@@ -13,13 +15,14 @@ const ContenedorHeader = styled.header`
   align-items: center;
   justify-content: center;
   background-color: #e0afa0;
-  border: 1px solid black;
 `;
 
 const Title = styled.h1`
   color: #463f3a;
   grid-column: 1/4;
   text-align: center;
+  align-items: center;
+  gap: 5%;
   padding: 10px;
   margin-left: 24px;
   font-size: 31px;
@@ -36,7 +39,7 @@ const Title = styled.h1`
   }
 `;
 
-const Carrito = styled.img`
+const Carrito = styled.button`
   padding: 2px;
   background-color: white;
   border-radius: 10%;
@@ -45,6 +48,7 @@ const Carrito = styled.img`
   width: 25px;
   grid-column: 4/4;
   border: 1px solid black;
+  cursor: pointer;
   /* Media Query for Tablets Ipads portrait mode */
   @media (min-width: 768px) and (max-width: 1024px) {
     grid-column: 4/4;
@@ -57,13 +61,67 @@ const Carrito = styled.img`
     width: 40px;
   }
 `;
-export const Header = ({titulo}) => {
+const LogoImagen = styled.button`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  :hover {
+    background-color: #f4f3ee;
+    transition-duration: 500ms;
+  }
+  transition-duration: 1000ms;
+  padding: 2px;
+  background-color: #e0afa0;
+  grid-column: 4/4;
+  height: 50px;
+  width: 80px;
+  border: #e0afa0;
+  border-radius: 50%;
+  cursor: pointer;
+  grid-column: 4/4;
+  svg {
+    
+    height: 20px;
+    width: 30px;
+    transform: scale(2.5, 1);
+  }
+  /* Media Query for Tablets Ipads portrait mode */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    grid-column: 3/4;
+    svg {
+      height: 25px;
+      width: 45px;
+    }
+  }
+  /* Media Query for Laptops and Desktops */
+  @media (min-width: 1025px) {
+    height: 70px;
+    width: 100px;
+    svg {
+      height: 35px;
+      width: 50px;
+    }
+  }
+`;
+export const Header = ({ titulo, returnHome }) => {
+
   return (
+
+
     <>
       <ContenedorHeader>
-        <Title>{titulo}</Title>
+        <Title>
+          {titulo}
+          <LogoImagen onClick={returnHome}>
+            <LogoM />
+            <LogoT />
+          </LogoImagen>
+        </Title>
         <Buscar />
-        <Carrito src={carrito} alt="" />
+        <Carrito>
+          <CarritoCompra />
+        </Carrito>
       </ContenedorHeader>
     </>
   );

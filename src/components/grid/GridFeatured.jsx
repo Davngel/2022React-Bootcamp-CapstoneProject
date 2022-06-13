@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import dataGrid from "../../mocks/en-us/featured-products.json";
 import styled from "styled-components";
 
@@ -17,6 +17,8 @@ const ContenedorGrid = styled.div`
     grid-template-columns: repeat(4, 1fr);
     padding: 0;
   }
+
+
 `;
 const Card = styled.div`
   width: 100%;
@@ -52,9 +54,10 @@ const CajaName = styled.span`
 
 const Gallery = styled.img`
   padding: 5px;
-  margin: 3px;
+  margin: auto;
   height: 80%;
   width: 95%;
+  display: block;
   justify-content: center;
   align-items: center;
 
@@ -63,6 +66,10 @@ const Gallery = styled.img`
     height: 200px;
     margin-left: 10%;
     padding: 0;
+  }
+
+  @media (min-width: 1200px) {
+  margin-left: 25%;
   }
 `;
 
@@ -97,8 +104,6 @@ const GridFeatured = () => {
     setVisible((prevValue) => prevValue + 4);
   };
 
-  useEffect(() => {}, []);
-
   return (
     <>
       <ContenedorGrid>
@@ -113,7 +118,7 @@ const GridFeatured = () => {
           </Card>
         ))}
       </ContenedorGrid>
-      <ButtonHere onClick={showMoreItems}>Cargar Más</ButtonHere>
+      <ButtonHere onClick={showMoreItems}>More</ButtonHere>
     </>
   );
 };

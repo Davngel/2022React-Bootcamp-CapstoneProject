@@ -22,7 +22,7 @@ const Buscar = () => {
     <Formulario>
       <input type="text" />
 
-      <button type="submit"> Buscar </button>
+      <button type="submit" onClick={(e)=>e.preventDefault()}> Buscar </button>
     </Formulario>
   );
 };
