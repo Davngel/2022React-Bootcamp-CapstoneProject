@@ -92,7 +92,6 @@ const Slider = ({
   const siguiente = useCallback(() => {
     // Comprobamos que el slideshow tenga elementos
     if (slideshow.current.children.length > 0) {
-      console.log("Siguiente");
 
       // Obtenemos el primer elemento del slideshow.
       const primerElemento = slideshow.current.children[0];
@@ -122,7 +121,6 @@ const Slider = ({
   }, [velocidad]);
 
   const anterior = () => {
-    console.log("Anterior");
     if (slideshow.current.children.length > 0) {
       // Obtenemos el ultimo elemento del slideshow.
       const index = slideshow.current.children.length - 1;
@@ -164,6 +162,7 @@ const Slider = ({
   }, [autoplay, intervalo, siguiente]);
 
   return (
+    <>
     <ContenedorPrincipal>
       <ContenedorSlideshow ref={slideshow}>
         {dataSlider.results.map((result) => (
@@ -186,6 +185,7 @@ const Slider = ({
         </Controles>
       )}
     </ContenedorPrincipal>
+    </>
   );
 };
 
