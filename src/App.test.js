@@ -1,8 +1,15 @@
-import { render, screen } from '@testing-library/react';
+import { getByText, render, screen } from '@testing-library/react';
 import App from './App';
+import React from "react";
+import { Header } from './components/header/Header';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('Nombre en Header', () => {
+  const titulo = 'Muebles Troncoso' ;
+
+  const {getByText} = render(<Header titulo={titulo}/>);
+
+  expect(getByText(titulo)).toBeInTheDocument();
+
 });
+
+
