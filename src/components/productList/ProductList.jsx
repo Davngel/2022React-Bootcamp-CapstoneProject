@@ -88,7 +88,7 @@ const ProductList = () => {
     setTimeout(() => {
       setCargando(false)
       
-    }, 10);
+    }, 2000);
     setCargando(true)
   }, [])
 
@@ -151,8 +151,8 @@ const ProductList = () => {
         </ProductContenedor>
   
         <ContenedorButton>
-            <button>Anterior</button>
-            <button>Siguiente</button>
+            <button>Back</button>
+            <button>Next</button>
           </ContenedorButton>
   
   </ContenedorProductList>)
