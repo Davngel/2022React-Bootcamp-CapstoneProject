@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, useCallback } from "react";
+import PropTypes from 'prop-types'
 import { ReactComponent as FlechaIzquierda } from "../../utils/img/iconmonstr-angel-left-thin.svg";
 import { ReactComponent as FlechaDerecha } from "../../utils/img/iconmonstr-angel-right-thin.svg";
-import dataSlider from "../../mocks/en-us/featured-banners.json";
+import Spinner from "../spinner/Spinner";
 import styled from "styled-components";
+import { useFeaturedBanners } from "../../utils/hooks/useFeaturedBanners";
 
 const ContenedorPrincipal = styled.div`
   position: relative;
@@ -92,7 +94,6 @@ const Slider = ({
   const siguiente = useCallback(() => {
     // Comprobamos que el slideshow tenga elementos
     if (slideshow.current.children.length > 0) {
-
       // Obtenemos el primer elemento del slideshow.
       const primerElemento = slideshow.current.children[0];
 
@@ -161,32 +162,45 @@ const Slider = ({
     }
   }, [autoplay, intervalo, siguiente]);
 
+  const { data, isLoading } = useFeaturedBanners();
+
   return (
     <>
-    <ContenedorPrincipal>
-      <ContenedorSlideshow ref={slideshow}>
-        {dataSlider.results.map((result) => (
-          <Slide key={result.id}>
-            <img src={result.data.main_image.url} alt="" />
-            <TextoSlide>
-              <p>{result.data.title}</p>
-            </TextoSlide>
-          </Slide>
-        ))}
-      </ContenedorSlideshow>
-      {controles && (
-        <Controles>
-          <Boton onClick={anterior}>
-            <FlechaIzquierda />
-          </Boton>
-          <Boton derecho onClick={siguiente}>
-            <FlechaDerecha />
-          </Boton>
-        </Controles>
+      {isLoading ? (
+        <Spinner/>
+      ) : (
+        <ContenedorPrincipal>
+          <ContenedorSlideshow ref={slideshow}>
+            {data.results.map((result) => (
+              <Slide key={result.id}>
+                <img src={result.data.main_image.url} alt="" />
+                <TextoSlide>
+                  <p>{result.data.title}</p>
+                </TextoSlide>
+              </Slide>
+            ))}
+          </ContenedorSlideshow>
+          {controles && (
+            <Controles>
+              <Boton onClick={anterior}>
+                <FlechaIzquierda />
+              </Boton>
+              <Boton derecho onClick={siguiente}>
+                <FlechaDerecha />
+              </Boton>
+            </Controles>
+          )}
+        </ContenedorPrincipal>
       )}
-    </ContenedorPrincipal>
     </>
   );
 };
+
+Slider.propTypes = {
+  controles: PropTypes.bool.isRequired,
+  autoplay: PropTypes.bool.isRequired,
+  velocidad: PropTypes.string,
+  intervalo: PropTypes.string,
+ }
 
 export { Slider, Slide, TextoSlide };

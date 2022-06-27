@@ -1,6 +1,8 @@
 import React from "react";
-import dataCarousel from "../../mocks/en-us/product-categories.json";
 import styled from "styled-components";
+import { useFeaturedCategories } from "../../utils/hooks/useFeaturedCategories";
+import { Link } from "react-router-dom";
+import Spinner from "../spinner/Spinner";
 
 const ContenedorCarousel = styled.div`
   width: 100%;
@@ -29,9 +31,6 @@ const ImagenCont = styled.img`
   align-items: center;
 `;
 
-// en linea celular
-// 5 en linea las demás pantallas.
-
 const Category = styled.div`
   width: 100%;
   margin: 3px;
@@ -48,6 +47,8 @@ const Parrafo = styled.p`
   font-size: 20px;
   border-bottom: 2px solid black;
   padding: 5px;
+  color: #463f3a;
+  text-decoration: none;
   @media (min-width: 768px) {
     font-size: 15px;
     font-weight: 500;
@@ -59,16 +60,27 @@ const Parrafo = styled.p`
   }
 `;
 const Carousel = () => {
+  const { data, isLoading } = useFeaturedCategories();
+
   return (
     <>
-      <ContenedorCarousel>
-        {dataCarousel.results.map((result) => (
-          <Category key={result.id}>
-            <ImagenCont src={result.data.main_image.url} alt="" />
-            <Parrafo>{result.data.name}</Parrafo>
-          </Category>
-        ))}
-      </ContenedorCarousel>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <ContenedorCarousel>
+          {data.results.map((result) => (
+            <Category key={result.id}>
+              <ImagenCont
+                src={result.data.main_image.url}
+                alt={result.data.name}
+              />
+              <Link to={`/products?category=${result.slugs[0]}`}>
+                <Parrafo>{result.data.name}</Parrafo>
+              </Link>
+            </Category>
+          ))}
+        </ContenedorCarousel>
+      )}
     </>
   );
 };

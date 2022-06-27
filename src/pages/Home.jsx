@@ -12,9 +12,7 @@ export const Home = () => {
         velocidad="3000"
         intervalo="5000"
       />
-
       <Carousel />
-
       <GridFeatured />
     </>
   );

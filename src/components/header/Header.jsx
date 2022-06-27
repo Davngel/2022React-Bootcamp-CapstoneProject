@@ -1,9 +1,11 @@
 import React from "react";
+import PropTypes from 'prop-types'
+import { Link } from "react-router-dom";
 import { ReactComponent as CarritoCompra } from "../../utils/img/shopping-cart_icon-icons.com_65051.svg";
 import { ReactComponent as LogoT } from "../../utils/img/letters_T.svg";
 import { ReactComponent as LogoM } from "../../utils/img/letters_M.svg";
-import Buscar from "../buscar/Buscar";
 import styled from "styled-components";
+import Search from "../search/Search";
 
 const ContenedorHeader = styled.header`
   width: 100%;
@@ -81,7 +83,6 @@ const LogoImagen = styled.button`
   cursor: pointer;
   grid-column: 4/4;
   svg {
-    
     height: 20px;
     width: 30px;
     transform: scale(2.5, 1);
@@ -105,20 +106,19 @@ const LogoImagen = styled.button`
   }
 `;
 export const Header = ({ titulo, returnHome }) => {
-
   return (
-
-
     <>
       <ContenedorHeader>
         <Title>
           {titulo}
-          <LogoImagen onClick={returnHome}>
-            <LogoM />
-            <LogoT />
-          </LogoImagen>
+          <Link to='/home'>
+            <LogoImagen onClick={returnHome}>
+              <LogoM />
+              <LogoT />
+            </LogoImagen>
+          </Link>
         </Title>
-        <Buscar />
+        <Search />
         <Carrito>
           <CarritoCompra />
         </Carrito>
@@ -126,3 +126,10 @@ export const Header = ({ titulo, returnHome }) => {
     </>
   );
 };
+
+
+Header.propTypes = {
+  titulo: PropTypes.string.isRequired,
+  returnHome: PropTypes.func.isRequired
+
+}
