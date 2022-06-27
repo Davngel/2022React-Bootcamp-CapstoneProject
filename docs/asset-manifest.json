@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.33feb07b.css",
-    "main.js": "/static/js/main.6a8835d0.js",
-    "static/js/787.8626abe6.chunk.js": "/static/js/787.8626abe6.chunk.js",
-    "static/media/letters_M.svg": "/static/media/letters_M.7ceb80c552ff65d05676c96234cfb59f.svg",
-    "static/media/shopping-cart_icon-icons.com_65051.svg": "/static/media/shopping-cart_icon-icons.com_65051.cba9cb9f0886fc70ff2fcba58a0dbc64.svg",
-    "static/media/letters_T.svg": "/static/media/letters_T.44646c06db1cfa14fa3317868242cbe7.svg",
-    "index.html": "/index.html",
-    "static/media/iconmonstr-angel-left-thin.svg": "/static/media/iconmonstr-angel-left-thin.b74b51c4c35fb292f28d63a42b7d73c9.svg",
-    "static/media/iconmonstr-angel-right-thin.svg": "/static/media/iconmonstr-angel-right-thin.b282d2fca8839e80178c1a178ce23993.svg",
-    "main.33feb07b.css.map": "/static/css/main.33feb07b.css.map",
-    "main.6a8835d0.js.map": "/static/js/main.6a8835d0.js.map",
-    "787.8626abe6.chunk.js.map": "/static/js/787.8626abe6.chunk.js.map"
+    "main.css": "/Eccomerce_muebles/static/css/main.33feb07b.css",
+    "main.js": "/Eccomerce_muebles/static/js/main.d044bf21.js",
+    "static/js/787.8626abe6.chunk.js": "/Eccomerce_muebles/static/js/787.8626abe6.chunk.js",
+    "static/media/letters_M.svg": "/Eccomerce_muebles/static/media/letters_M.7ceb80c552ff65d05676c96234cfb59f.svg",
+    "static/media/shopping-cart_icon-icons.com_65051.svg": "/Eccomerce_muebles/static/media/shopping-cart_icon-icons.com_65051.cba9cb9f0886fc70ff2fcba58a0dbc64.svg",
+    "static/media/letters_T.svg": "/Eccomerce_muebles/static/media/letters_T.44646c06db1cfa14fa3317868242cbe7.svg",
+    "index.html": "/Eccomerce_muebles/index.html",
+    "static/media/iconmonstr-angel-left-thin.svg": "/Eccomerce_muebles/static/media/iconmonstr-angel-left-thin.b74b51c4c35fb292f28d63a42b7d73c9.svg",
+    "static/media/iconmonstr-angel-right-thin.svg": "/Eccomerce_muebles/static/media/iconmonstr-angel-right-thin.b282d2fca8839e80178c1a178ce23993.svg",
+    "main.33feb07b.css.map": "/Eccomerce_muebles/static/css/main.33feb07b.css.map",
+    "main.d044bf21.js.map": "/Eccomerce_muebles/static/js/main.d044bf21.js.map",
+    "787.8626abe6.chunk.js.map": "/Eccomerce_muebles/static/js/787.8626abe6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.33feb07b.css",
-    "static/js/main.6a8835d0.js"
+    "static/js/main.d044bf21.js"
   ]
 }

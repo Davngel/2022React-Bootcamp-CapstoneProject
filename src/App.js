@@ -43,11 +43,11 @@ function App() {
           />
 
       <Routes>    
-        <Route path='https://davngel.github.io/Eccomerce_muebles' element={<Home/>}/>
-        <Route path='https://davngel.github.io/Eccomerce_muebles/home' element={<Home/>}/>
-        <Route path='https://davngel.github.io/Eccomerce_muebles/products' element={<ProductList/>}/>
-        <Route path='https://davngel.github.io/Eccomerce_muebles/product/:productId' element={<ProductDetailPage/>}/>
-        <Route path='https://davngel.github.io/Eccomerce_muebles/search' element={<SearchPageResults />}/>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/home' element={<Home/>}/>
+        <Route path='/products' element={<ProductList/>}/>
+        <Route path='/product/:productId' element={<ProductDetailPage/>}/>
+        <Route path='/search' element={<SearchPageResults />}/>
       </Routes>
 
       
