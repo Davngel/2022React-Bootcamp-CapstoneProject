@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import "swiper/css/bundle";
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename="/Eccomerce_muebles">
     <App />
   </BrowserRouter>,
   document.getElementById('root')

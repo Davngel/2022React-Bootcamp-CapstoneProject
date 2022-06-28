@@ -54,7 +54,7 @@ function App() {
       <Link to={`${nave ? '/products': '/home'}`}>
       <ButtonProducts onClick={changePath}>{nave ? `View all products`: `Home`}</ButtonProducts>
       </Link>
-      <Footer/>
+      <Footer/>q
     </>
     
   );

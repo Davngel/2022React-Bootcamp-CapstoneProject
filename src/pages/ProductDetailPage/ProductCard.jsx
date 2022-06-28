@@ -42,7 +42,7 @@ text-transform: capitalize;
 
 const NumberInput = styled.input `
  margin: 2px;
- width: 30px;
+ width: 100px;
 
 `;
 

@@ -240,7 +240,7 @@ const Producto = styled.div`
     width: 205px;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1200px) {
     width: auto;
   }
 `;
