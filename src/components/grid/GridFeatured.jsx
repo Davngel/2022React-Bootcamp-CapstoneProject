@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import dataGrid from "../../mocks/en-us/featured-products.json";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useFeaturedGrid } from "../../utils/hooks/useFeaturedGrid";
+import Spinner from "../spinner/Spinner";
 
 const ContenedorGrid = styled.div`
   width: 100%;
@@ -41,6 +42,17 @@ const CajaName = styled.span`
   margin: auto;
   font-size: 20px;
   text-align: center;
+
+  width: 250px;
+  padding: 2px 5px;
+
+  /* Both of the following are required for text-overflow */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+
+
   @media (min-width: 768px) {
     font-size: 30px;
     padding: 5px;
@@ -52,9 +64,10 @@ const CajaName = styled.span`
 
 const Gallery = styled.img`
   padding: 5px;
-  margin: 3px;
+  margin: auto;
   height: 80%;
   width: 95%;
+  display: block;
   justify-content: center;
   align-items: center;
 
@@ -63,6 +76,10 @@ const Gallery = styled.img`
     height: 200px;
     margin-left: 10%;
     padding: 0;
+  }
+
+  @media (min-width: 1200px) {
+    margin-left: 25%;
   }
 `;
 
@@ -97,23 +114,27 @@ const GridFeatured = () => {
     setVisible((prevValue) => prevValue + 4);
   };
 
-  useEffect(() => {}, []);
+  const { data, isLoading } = useFeaturedGrid();
 
   return (
     <>
-      <ContenedorGrid>
-        {dataGrid.results.slice(0, visible).map((result) => (
-          <Card key={result.id}>
-            <Name>
-              <CajaName>{result.data.name}</CajaName>
-            </Name>
-            <Gallery src={result.data.mainimage.url} alt={result.id} />
-            <TextoParrafo>{result.data.category.slug}</TextoParrafo>
-            <TextoParrafo>$ {result.data.price}</TextoParrafo>
-          </Card>
-        ))}
-      </ContenedorGrid>
-      <ButtonHere onClick={showMoreItems}>Cargar Más</ButtonHere>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <ContenedorGrid>
+          {data.results.slice(0, visible).map((result) => (
+            <Card key={result.id}>
+              <Name>
+                <CajaName>{result.data.name}</CajaName>
+              </Name>
+              <Gallery src={result.data.mainimage.url} alt={result.id} />
+              <TextoParrafo>{result.data.category.slug}</TextoParrafo>
+              <TextoParrafo>$ {result.data.price}</TextoParrafo>
+            </Card>
+          ))}
+        </ContenedorGrid>
+      )}
+      <ButtonHere onClick={showMoreItems}>More</ButtonHere>
     </>
   );
 };

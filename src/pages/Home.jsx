@@ -8,13 +8,11 @@ export const Home = () => {
     <>
       <Slider
         controles={true}
-        autoplay={true}
+        autoplay={false}
         velocidad="3000"
         intervalo="5000"
       />
-
       <Carousel />
-
       <GridFeatured />
     </>
   );
