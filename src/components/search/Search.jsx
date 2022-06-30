@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useForm } from "../../utils/hooks/useForm.js";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Formulario = styled.form`
   margin: 3px;

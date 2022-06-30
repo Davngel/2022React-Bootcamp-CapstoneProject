@@ -1,6 +1,7 @@
-import React from "react";
-import PropTypes from 'prop-types'
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import PropTypes from "prop-types";
+import ProductsOnCar from "../context/ProductsCar";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as CarritoCompra } from "../../utils/img/shopping-cart_icon-icons.com_65051.svg";
 import { ReactComponent as LogoT } from "../../utils/img/letters_T.svg";
 import { ReactComponent as LogoM } from "../../utils/img/letters_M.svg";
@@ -105,31 +106,72 @@ const LogoImagen = styled.button`
     }
   }
 `;
-export const Header = ({ titulo, returnHome }) => {
+
+const NumberOf = styled.span`
+  background-color: #e0afa0;
+  width: 20px;
+  color: black;
+  border-radius: 5px;
+  position: absolute;
+  font-size: 10px;
+  font-weight: 900;
+  margin-top: 10px;
+  margin-left: 7px;
+
+  /* Media Query for Tablets Ipads portrait mode */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    margin-top: 15px;
+    margin-left: 13px;
+    font-size: 12px;
+  }
+  /* Media Query for Laptops and Desktops */
+  @media (min-width: 1025px) {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 14px;
+  }
+`;
+export const Header = ({ titulo }) => {
+  const { carrito } = useContext(ProductsOnCar);
+
+  const navigate = useNavigate();
+
+  const handleOnClick = () => {
+    navigate("/cart");
+  };
+
+  const [numberItems, setNumberItems] = useState(0);
+
+  useEffect(() => {
+    const totalItems = carrito.reduce(
+      (total, producto) => total + producto.quantity,
+      0
+    );
+
+    setNumberItems(totalItems);
+  }, [carrito]);
   return (
     <>
       <ContenedorHeader>
         <Title>
           {titulo}
-          <Link to='/home'>
-            <LogoImagen onClick={returnHome}>
+          <Link to="/home">
+            <LogoImagen>
               <LogoM />
               <LogoT />
             </LogoImagen>
           </Link>
         </Title>
         <Search />
-        <Carrito>
-          <CarritoCompra />
+        <Carrito onClick={handleOnClick}>
+          <NumberOf>{numberItems}</NumberOf>
+          <CarritoCompra></CarritoCompra>
         </Carrito>
       </ContenedorHeader>
     </>
   );
 };
 
-
 Header.propTypes = {
   titulo: PropTypes.string.isRequired,
-  returnHome: PropTypes.func.isRequired
-
-}
+};

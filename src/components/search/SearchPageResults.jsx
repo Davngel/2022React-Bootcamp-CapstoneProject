@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { API_BASE_URL } from "../../utils/constants";
 import { useLatestAPI } from "../../utils/hooks/useLatestAPI";
-import Spinner from '../spinner/Spinner'
+import Spinner from "../spinner/Spinner";
 import styled from "styled-components";
-
+import ProductsOnCar from "../context/ProductsCar";
 
 const ProductContenedor = styled.div`
   display: grid;
@@ -36,7 +36,7 @@ const ContenedorButton = styled.div`
       0 17px 50px 0 rgba(0, 0, 0, 0.19);
   }
 `;
-const Description = styled.p `
+const Description = styled.p`
   width: 170px;
   padding: 5px;
 
@@ -44,9 +44,6 @@ const Description = styled.p `
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
-
-
 `;
 
 const CajaName = styled.div`
@@ -56,7 +53,6 @@ const CajaName = styled.div`
 `;
 const Producto = styled.div`
   border: 0.5px solid black;
-
 `;
 
 const ProductName = styled.span`
@@ -109,12 +105,12 @@ const PrizeCategory = styled.p`
   }
 `;
 
- const ButtonCart = styled.button`
+const ButtonCart = styled.button`
   width: 100%;
- 
- `;
+`;
 
 const SearchPageResults = () => {
+  const { agregarCarrito } = useContext(ProductsOnCar);
   const { search } = useLocation();
   const searchParams = new URLSearchParams(search);
   const [searchTerm, setSearchTerm] = useState();
@@ -186,36 +182,54 @@ const SearchPageResults = () => {
   return (
     <div>
       {isLoading ? (
-        <Spinner/>
+        <Spinner />
       ) : data.total_results_size === 0 ? (
-        <div>Not a match {searchTerm}</div>
+        <div>Not a match "{searchTerm}"</div>
       ) : (
         <>
-        <ProductContenedor>
-          {data.results.slice(currentPageNumber, tope).map((result, index) => {
-            return (
-              <div key={index}>
-              <Producto key={index}>
-                <CajaName>
-                <ProductName>{result.data.name}</ProductName>
-                </CajaName>
-                <ProductImage src={result.data.mainimage.url} alt={result.data.name} />
-                <PrizeCategory>{result.data.category.slug}</PrizeCategory>
-                <PrizeCategory>${result.data.price}</PrizeCategory>
-                <Description>{result.data.short_description}</Description>
-                <br/>
-
-              </Producto>
-                              <ButtonCart>Add to car</ButtonCart>
-              </div>
-            );
-          })}
-        </ProductContenedor>
-                  <ContenedorButton>
-                  <button onClick={handlePrev}>prev</button>
-                  <button onClick={handleNext}>next</button>
-                </ContenedorButton>
-                </>
+          <ProductContenedor>
+            {data.results
+              .slice(currentPageNumber, tope)
+              .map((result, index) => {
+                return (
+                  <div key={index}>
+                    <Producto key={index}>
+                      <CajaName>
+                        <ProductName>{result.data.name}</ProductName>
+                      </CajaName>
+                      <ProductImage
+                        src={result.data.mainimage.url}
+                        alt={result.data.name}
+                      />
+                      <PrizeCategory>{result.data.category.slug}</PrizeCategory>
+                      <PrizeCategory>${result.data.price}</PrizeCategory>
+                      <Description>{result.data.short_description}</Description>
+                      <br />
+                    </Producto>
+                    <ButtonCart
+                      onClick={() => {
+                        const productoSeleccionado = {
+                          id: result.data.name,
+                          name: result.data.name,
+                          imagen: result.data.mainimage.url,
+                          price: result.data.price,
+                          quantity: 1,
+                          stock: result.data.stock,
+                        };
+                        agregarCarrito(productoSeleccionado);
+                      }}
+                    >
+                      Add to car
+                    </ButtonCart>
+                  </div>
+                );
+              })}
+          </ProductContenedor>
+          <ContenedorButton>
+            <button onClick={handlePrev}>prev</button>
+            <button onClick={handleNext}>next</button>
+          </ContenedorButton>
+        </>
       )}
     </div>
   );

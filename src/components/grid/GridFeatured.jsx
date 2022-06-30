@@ -51,8 +51,6 @@ const CajaName = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
 
-
-
   @media (min-width: 768px) {
     font-size: 30px;
     padding: 5px;

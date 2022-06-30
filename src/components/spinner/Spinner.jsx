@@ -1,6 +1,5 @@
-import React from 'react'
-import styled from 'styled-components';
-
+import React from "react";
+import styled from "styled-components";
 
 const Loader = styled.div`
   border: 16px solid #f3f3f3;
@@ -32,13 +31,8 @@ const Loader = styled.div`
   }
 `;
 
-
-
 const Spinner = () => {
-  return (
-    <Loader></Loader>
+  return <Loader></Loader>;
+};
 
-  )
-}
-
-export default Spinner
+export default Spinner;

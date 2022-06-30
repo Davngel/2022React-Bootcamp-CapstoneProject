@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLocation, Link } from "react-router-dom";
+import ProductsOnCar from "../context/ProductsCar";
 import styled from "styled-components";
 import { useFeaturedCategories } from "../../utils/hooks/useFeaturedCategories";
 import { useProductList } from "../../utils/hooks/useProductList";
@@ -14,6 +15,17 @@ const ContenedorProductList = styled.div`
   @media (min-width: 1024px) {
     grid-template-columns: 15% 85%;
   }
+`;
+const ButtonProducts = styled.button`
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 16px 0;
+  margin: 10px 0;
+  background-color: #8a817c;
+  color: black;
+  font-size: 18px;
+  cursor: pointer;
 `;
 const CajaName = styled.div`
   border: 1px solid black;
@@ -62,6 +74,7 @@ const ProductList = () => {
   let categoriaActiva = categorias;
   const { data, isLoading } = useFeaturedCategories();
   const [categories, setCategories] = useState([]);
+  const { agregarCarrito } = useContext(ProductsOnCar);
 
   useEffect(() => {
     if (data.results)
@@ -176,10 +189,25 @@ const ProductList = () => {
             {filteredCategory.slice(currentPageNumber, tope).map((result) => (
               <Producto key={result.id}>
                 <CajaName>
-                  <ProductName>{result.data.name}</ProductName>
+                  <ProductName value="1">{result.data.name}</ProductName>
                 </CajaName>
                 <ContenedorButtonCar>
-                  <button> Add to car</button>
+                  <button
+                    onClick={() => {
+                      const productoSeleccionado = {
+                        id: result.data.name,
+                        name: result.data.name,
+                        imagen: result.data.mainimage.url,
+                        price: result.data.price,
+                        quantity: 1,
+                        stock: result.data.stock,
+                      };
+                      agregarCarrito(productoSeleccionado);
+                    }}
+                  >
+                    {" "}
+                    Add to car
+                  </button>
                   <Link to={`/product/${result.id}`}>
                     <button>More info</button>
                   </Link>
@@ -195,6 +223,9 @@ const ProductList = () => {
             <button onClick={handlePrev}>prev</button>
             <button onClick={handleNext}>next</button>
           </ContenedorButton>
+          <Link to={"/home"}>
+            <ButtonProducts>Home</ButtonProducts>
+          </Link>
         </ContenedorProductList>
       )}
     </>
@@ -204,19 +235,14 @@ const ProductList = () => {
 const ContenedorButton = styled.div`
   display: grid;
   padding: 10px;
+  height: 90%;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  justify-content: start;
   background-color: #e7e7e7;
   color: black;
   font-size: 12px;
   gap: 5px;
   border-radius: 8px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  :hover {
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-      0 17px 50px 0 rgba(0, 0, 0, 0.19);
-  }
 `;
 
 const ProductContenedor = styled.div`

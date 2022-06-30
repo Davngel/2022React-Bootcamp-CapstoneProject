@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback } from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 import { ReactComponent as FlechaIzquierda } from "../../utils/img/iconmonstr-angel-left-thin.svg";
 import { ReactComponent as FlechaDerecha } from "../../utils/img/iconmonstr-angel-right-thin.svg";
 import Spinner from "../spinner/Spinner";
@@ -167,7 +167,7 @@ const Slider = ({
   return (
     <>
       {isLoading ? (
-        <Spinner/>
+        <Spinner />
       ) : (
         <ContenedorPrincipal>
           <ContenedorSlideshow ref={slideshow}>
@@ -201,6 +201,6 @@ Slider.propTypes = {
   autoplay: PropTypes.bool.isRequired,
   velocidad: PropTypes.string,
   intervalo: PropTypes.string,
- }
+};
 
 export { Slider, Slide, TextoSlide };

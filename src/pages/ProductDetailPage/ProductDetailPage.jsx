@@ -1,15 +1,28 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React,{useContext} from 'react'
+import { Link, useParams } from 'react-router-dom'
 import ProductCard from './ProductCard'
-
+import ProductsOnCar from '../../components/context/ProductsCar'
 import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../../utils/constants';
 import { useLatestAPI } from '../../utils/hooks/useLatestAPI'
+import Spinner from '../../components/spinner/Spinner';
+import styled from 'styled-components';
 
 
-
+const ButtonProducts = styled.button`
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 16px 0;
+  margin: 10px 0;
+  background-color: #8a817c;
+  color: black;
+  font-size: 18px;
+  cursor: pointer;
+`;
 
 const ProductDetailPage = () => {
+  const {agregarCarrito} = useContext(ProductsOnCar)
 
     const {productId} = useParams()
 
@@ -65,13 +78,16 @@ const {data, isLoading} = useProduct()
 
 {
     isLoading ? (
-<div></div>
+<Spinner/>
     ):
 (    <ProductCard
     data={data}
+    agregarCarrito={agregarCarrito}
     />)
 }
-
+<Link to={'/products'}>
+      <ButtonProducts>View all products</ButtonProducts>
+      </Link>
 </> )
 }
 

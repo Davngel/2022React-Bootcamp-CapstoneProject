@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
-import "swiper/css/bundle";
+import { ProductsProvider } from './components/context/ProductsCar';
 
 ReactDOM.render(
-  <BrowserRouter basename="/Eccomerce_muebles">
+  <BrowserRouter>
+  <ProductsProvider>
     <App />
+    </ProductsProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );
