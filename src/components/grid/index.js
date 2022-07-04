@@ -1,1 +1,1 @@
-export { default } from './GridFeatured'
+export { default } from './GridFeatured';
