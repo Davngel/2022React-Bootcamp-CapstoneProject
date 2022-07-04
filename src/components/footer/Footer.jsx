@@ -1,21 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import * as S from './Footer.styled';
 
-const CajaFooter = styled.div`
-  display: flex;
-  margin: auto;
-  padding: 10%;
-  font-size: large;
-  text-align: center;
-  justify-content: center;
-  text-decoration: underline;
-`;
 const Footer = () => {
-  return (
-    <CajaFooter>
-      <p>Ecommerce created during Wizeline's Academy React Bootcamp</p>
-    </CajaFooter>
-  );
+	return (
+		<S.CajaFooter>
+			<p>Ecommerce created during Wizeline`&apos;`s Academy React Bootcamp</p>
+		</S.CajaFooter>
+	);
 };
 
 export default Footer;
