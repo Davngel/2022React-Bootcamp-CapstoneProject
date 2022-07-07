@@ -1,19 +1,43 @@
 import './App.css';
-import Footer from './components/footer/Footer';
-import { Header } from './components/header/Header';
+import React from 'react'
+import Footer from './components/footer';
+import  {Header}  from './components/header/Header';
 import { Home } from './pages/Home';
+import ProductList from './components/productList';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import ProductDetailPage from './pages/ProductDetailPage';
+import SearchPageResults from './components/search';
+import ShoppingCarPage from './components/shoppingCarPage';
+import CheckoutPage from './components/checkoutPage';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorFallback from './components/errorFallback';
+
 
 function App() {
 
   return (
-    <div>
-      <Header 
-      titulo={'MUEBLES TRONCOSO'}
-      
-      />
-      <Home/>
-      <Footer/>
-    </div>
+    <>
+    <ErrorBoundary
+      FallbackComponent={ErrorFallback}
+    >
+        <Header 
+        titulo={'MUEBLES TRONCOSO'}
+        />
+
+        <Routes>    
+          <Route path='/' element={<Navigate to='/home'/>}/>
+          <Route path='/home' element={<Home/>}/>
+          <Route path='/products' element={<ProductList/>}/>
+          <Route path='/product/:productId' element={<ProductDetailPage />}/>
+          <Route path='/search' element={<SearchPageResults />}/>
+          <Route path='/cart' element={<ShoppingCarPage />}/>
+          <Route path='/checkout' element={<CheckoutPage />}/>
+        </Routes>
+        
+        <Footer/>
+        
+      </ErrorBoundary>
+    </>
     
   );
 }
