@@ -19,7 +19,7 @@ const ShoppingCarPage = () => {
 
   return (
     <div>
-      <S.MainContenedor>
+      <S.MainContenedor >
         {carrito.length === 0 ? (
           ""
         ) : (
@@ -27,7 +27,7 @@ const ShoppingCarPage = () => {
             {carrito.map((producto) => (
               <S.ProductoCarrito key={producto.id}>
                 <div>
-                  <S.ProductoImagen src={producto.imagen} alt={producto.name} />
+                  <S.ProductoImagen src={producto.imagen} alt={producto.name} arial-label="img"/>
                 </div>
                 <div>
                   <S.ProductName>{producto.name}</S.ProductName>

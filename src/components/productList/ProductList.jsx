@@ -157,7 +157,7 @@ const ProductList = () => {
               ))}
             </S.Lista>
           </S.SidebarContenedor>
-          <S.ProductContenedor>
+          <S.ProductContenedor  data-testid="producto">
             {filteredCategory.slice(currentPageNumber, tope).map((result) => (
               <S.Producto key={result.id}>
                 <S.CajaName>
