@@ -30,7 +30,6 @@ export const Header = ({ titulo }) => {
   return (
     <>
       <S.ContenedorHeader>
-        S.
         <S.Title>
           {titulo}
           <Link to="/home">

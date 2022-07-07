@@ -8,10 +8,10 @@ import { ProductsProvider } from './components/context/ProductsCar';
 ReactDOM.render(
 
   <ProductsProvider>
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-    </ProductsProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </ProductsProvider>
 ,
   document.getElementById('root')
 );
